@@ -1,588 +1,279 @@
 <!DOCTYPE html>
-<html>
-<head>
-    <title>Aquase</title>
-<meta charset="UTF-8">
-<meta name="viewport" content="width=device-width, initial-scale=1">
-<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
-<link rel="icon" href="assets/drip.ico" />
-<style>
-    /* W3.CSS 4.15 December 2020 by Jan Egil and Borge Refsnes */
-html{box-sizing:border-box}*,*:before,*:after{box-sizing:inherit}
-/* Extract from normalize.css by Nicolas Gallagher and Jonathan Neal git.io/normalize */
-html{-ms-text-size-adjust:100%;-webkit-text-size-adjust:100%}body{margin:0}
-article,aside,details,figcaption,figure,footer,header,main,menu,nav,section{display:block}summary{display:list-item}
-audio,canvas,progress,video{display:inline-block}progress{vertical-align:baseline}
-audio:not([controls]){display:none;height:0}[hidden],template{display:none}
-a{background-color:transparent}a:active,a:hover{outline-width:0}
-abbr[title]{border-bottom:none;text-decoration:underline;text-decoration:underline dotted}
-b,strong{font-weight:bolder}dfn{font-style:italic}mark{background:#ff0;color:#000}
-small{font-size:80%}sub,sup{font-size:75%;line-height:0;position:relative;vertical-align:baseline}
-sub{bottom:-0.25em}sup{top:-0.5em}figure{margin:1em 40px}img{border-style:none}
-code,kbd,pre,samp{font-family:monospace,monospace;font-size:1em}hr{box-sizing:content-box;height:0;overflow:visible}
-button,input,select,textarea,optgroup{font:inherit;margin:0}optgroup{font-weight:bold}
-button,input{overflow:visible}button,select{text-transform:none}
-button,[type=button],[type=reset],[type=submit]{-webkit-appearance:button}
-button::-moz-focus-inner,[type=button]::-moz-focus-inner,[type=reset]::-moz-focus-inner,[type=submit]::-moz-focus-inner{border-style:none;padding:0}
-button:-moz-focusring,[type=button]:-moz-focusring,[type=reset]:-moz-focusring,[type=submit]:-moz-focusring{outline:1px dotted ButtonText}
-fieldset{border:1px solid #c0c0c0;margin:0 2px;padding:.35em .625em .75em}
-legend{color:inherit;display:table;max-width:100%;padding:0;white-space:normal}textarea{overflow:auto}
-[type=checkbox],[type=radio]{padding:0}
-[type=number]::-webkit-inner-spin-button,[type=number]::-webkit-outer-spin-button{height:auto}
-[type=search]{-webkit-appearance:textfield;outline-offset:-2px}
-[type=search]::-webkit-search-decoration{-webkit-appearance:none}
-::-webkit-file-upload-button{-webkit-appearance:button;font:inherit}
-/* End extract */
-html,body{font-family:Verdana,sans-serif;font-size:15px;line-height:1.5}html{overflow-x:hidden}
-h1{font-size:36px}h2{font-size:30px}h3{font-size:24px}h4{font-size:20px}h5{font-size:18px}h6{font-size:16px}
-.w3-serif{font-family:serif}.w3-sans-serif{font-family:sans-serif}.w3-cursive{font-family:cursive}.w3-monospace{font-family:monospace}
-h1,h2,h3,h4,h5,h6{font-family:"Segoe UI",Arial,sans-serif;font-weight:400;margin:10px 0}.w3-wide{letter-spacing:4px}
-hr{border:0;border-top:1px solid #eee;margin:20px 0}
-.w3-image{max-width:100%;height:auto}img{vertical-align:middle}a{color:inherit}
-.w3-table,.w3-table-all{border-collapse:collapse;border-spacing:0;width:100%;display:table}.w3-table-all{border:1px solid #ccc}
-.w3-bordered tr,.w3-table-all tr{border-bottom:1px solid #ddd}.w3-striped tbody tr:nth-child(even){background-color:#f1f1f1}
-.w3-table-all tr:nth-child(odd){background-color:#fff}.w3-table-all tr:nth-child(even){background-color:#f1f1f1}
-.w3-hoverable tbody tr:hover,.w3-ul.w3-hoverable li:hover{background-color:#ccc}.w3-centered tr th,.w3-centered tr td{text-align:center}
-.w3-table td,.w3-table th,.w3-table-all td,.w3-table-all th{padding:8px 8px;display:table-cell;text-align:left;vertical-align:top}
-.w3-table th:first-child,.w3-table td:first-child,.w3-table-all th:first-child,.w3-table-all td:first-child{padding-left:16px}
-.w3-btn,.w3-button{border:none;display:inline-block;padding:8px 16px;vertical-align:middle;overflow:hidden;text-decoration:none;color:inherit;background-color:inherit;text-align:center;cursor:pointer;white-space:nowrap}
-.w3-btn:hover{box-shadow:0 8px 16px 0 rgba(0,0,0,0.2),0 6px 20px 0 rgba(0,0,0,0.19)}
-.w3-btn,.w3-button{-webkit-touch-callout:none;-webkit-user-select:none;-khtml-user-select:none;-moz-user-select:none;-ms-user-select:none;user-select:none}   
-.w3-disabled,.w3-btn:disabled,.w3-button:disabled{cursor:not-allowed;opacity:0.3}.w3-disabled *,:disabled *{pointer-events:none}
-.w3-btn.w3-disabled:hover,.w3-btn:disabled:hover{box-shadow:none}
-.w3-badge,.w3-tag{background-color:#000;color:#fff;display:inline-block;padding-left:8px;padding-right:8px;text-align:center}.w3-badge{border-radius:50%}
-.w3-ul{list-style-type:none;padding:0;margin:0}.w3-ul li{padding:8px 16px;border-bottom:1px solid #ddd}.w3-ul li:last-child{border-bottom:none}
-.w3-tooltip,.w3-display-container{position:relative}.w3-tooltip .w3-text{display:none}.w3-tooltip:hover .w3-text{display:inline-block}
-.w3-ripple:active{opacity:0.5}.w3-ripple{transition:opacity 0s}
-.w3-input{padding:8px;display:block;border:none;border-bottom:1px solid #ccc;width:100%}
-.w3-select{padding:9px 0;width:100%;border:none;border-bottom:1px solid #ccc}
-.w3-dropdown-click,.w3-dropdown-hover{position:relative;display:inline-block;cursor:pointer}
-.w3-dropdown-hover:hover .w3-dropdown-content{display:block}
-.w3-dropdown-hover:first-child,.w3-dropdown-click:hover{background-color:#ccc;color:#000}
-.w3-dropdown-hover:hover > .w3-button:first-child,.w3-dropdown-click:hover > .w3-button:first-child{background-color:#ccc;color:#000}
-.w3-dropdown-content{cursor:auto;color:#000;background-color:#fff;display:none;position:absolute;min-width:160px;margin:0;padding:0;z-index:1}
-.w3-check,.w3-radio{width:24px;height:24px;position:relative;top:6px}
-.w3-sidebar{height:100%;width:200px;background-color:#fff;position:fixed!important;z-index:1;overflow:auto}
-.w3-bar-block .w3-dropdown-hover,.w3-bar-block .w3-dropdown-click{width:100%}
-.w3-bar-block .w3-dropdown-hover .w3-dropdown-content,.w3-bar-block .w3-dropdown-click .w3-dropdown-content{min-width:100%}
-.w3-bar-block .w3-dropdown-hover .w3-button,.w3-bar-block .w3-dropdown-click .w3-button{width:100%;text-align:left;padding:8px 16px}
-.w3-main,#main{transition:margin-left .4s}
-.w3-modal{z-index:3;display:none;padding-top:100px;position:fixed;left:0;top:0;width:100%;height:100%;overflow:auto;background-color:rgb(0,0,0);background-color:rgba(0,0,0,0.4)}
-.w3-modal-content{margin:auto;background-color:#fff;position:relative;padding:0;outline:0;width:600px}
-.w3-bar{width:100%;overflow:hidden}.w3-center .w3-bar{display:inline-block;width:auto}
-.w3-bar .w3-bar-item{padding:8px 16px;float:left;width:auto;border:none;display:block;outline:0}
-.w3-bar .w3-dropdown-hover,.w3-bar .w3-dropdown-click{position:static;float:left}
-.w3-bar .w3-button{white-space:normal}
-.w3-bar-block .w3-bar-item{width:100%;display:block;padding:8px 16px;text-align:left;border:none;white-space:normal;float:none;outline:0}
-.w3-bar-block.w3-center .w3-bar-item{text-align:center}.w3-block{display:block;width:100%}
-.w3-responsive{display:block;overflow-x:auto}
-.w3-container:after,.w3-container:before,.w3-panel:after,.w3-panel:before,.w3-row:after,.w3-row:before,.w3-row-padding:after,.w3-row-padding:before,
-.w3-cell-row:before,.w3-cell-row:after,.w3-clear:after,.w3-clear:before,.w3-bar:before,.w3-bar:after{content:"";display:table;clear:both}
-.w3-col,.w3-half,.w3-third,.w3-twothird,.w3-threequarter,.w3-quarter{float:left;width:100%}
-.w3-col.s1{width:8.33333%}.w3-col.s2{width:16.66666%}.w3-col.s3{width:24.99999%}.w3-col.s4{width:33.33333%}
-.w3-col.s5{width:41.66666%}.w3-col.s6{width:49.99999%}.w3-col.s7{width:58.33333%}.w3-col.s8{width:66.66666%}
-.w3-col.s9{width:74.99999%}.w3-col.s10{width:83.33333%}.w3-col.s11{width:91.66666%}.w3-col.s12{width:99.99999%}
-@media (min-width:601px){.w3-col.m1{width:8.33333%}.w3-col.m2{width:16.66666%}.w3-col.m3,.w3-quarter{width:24.99999%}.w3-col.m4,.w3-third{width:33.33333%}
-.w3-col.m5{width:41.66666%}.w3-col.m6,.w3-half{width:49.99999%}.w3-col.m7{width:58.33333%}.w3-col.m8,.w3-twothird{width:66.66666%}
-.w3-col.m9,.w3-threequarter{width:74.99999%}.w3-col.m10{width:83.33333%}.w3-col.m11{width:91.66666%}.w3-col.m12{width:99.99999%}}
-@media (min-width:993px){.w3-col.l1{width:8.33333%}.w3-col.l2{width:16.66666%}.w3-col.l3{width:24.99999%}.w3-col.l4{width:33.33333%}
-.w3-col.l5{width:41.66666%}.w3-col.l6{width:49.99999%}.w3-col.l7{width:58.33333%}.w3-col.l8{width:66.66666%}
-.w3-col.l9{width:74.99999%}.w3-col.l10{width:83.33333%}.w3-col.l11{width:91.66666%}.w3-col.l12{width:99.99999%}}
-.w3-rest{overflow:hidden}.w3-stretch{margin-left:-16px;margin-right:-16px}
-.w3-content,.w3-auto{margin-left:auto;margin-right:auto}.w3-content{max-width:980px}.w3-auto{max-width:1140px}
-.w3-cell-row{display:table;width:100%}.w3-cell{display:table-cell}
-.w3-cell-top{vertical-align:top}.w3-cell-middle{vertical-align:middle}.w3-cell-bottom{vertical-align:bottom}
-.w3-hide{display:none!important}.w3-show-block,.w3-show{display:block!important}.w3-show-inline-block{display:inline-block!important}
-@media (max-width:1205px){.w3-auto{max-width:95%}}
-@media (max-width:600px){.w3-modal-content{margin:0 10px;width:auto!important}.w3-modal{padding-top:30px}
-.w3-dropdown-hover.w3-mobile .w3-dropdown-content,.w3-dropdown-click.w3-mobile .w3-dropdown-content{position:relative}	
-.w3-hide-small{display:none!important}.w3-mobile{display:block;width:100%!important}.w3-bar-item.w3-mobile,.w3-dropdown-hover.w3-mobile,.w3-dropdown-click.w3-mobile{text-align:center}
-.w3-dropdown-hover.w3-mobile,.w3-dropdown-hover.w3-mobile .w3-btn,.w3-dropdown-hover.w3-mobile .w3-button,.w3-dropdown-click.w3-mobile,.w3-dropdown-click.w3-mobile .w3-btn,.w3-dropdown-click.w3-mobile .w3-button{width:100%}}
-@media (max-width:768px){.w3-modal-content{width:500px}.w3-modal{padding-top:50px}}
-@media (min-width:993px){.w3-modal-content{width:900px}.w3-hide-large{display:none!important}.w3-sidebar.w3-collapse{display:block!important}}
-@media (max-width:992px) and (min-width:601px){.w3-hide-medium{display:none!important}}
-@media (max-width:992px){.w3-sidebar.w3-collapse{display:none}.w3-main{margin-left:0!important;margin-right:0!important}.w3-auto{max-width:100%}}
-.w3-top,.w3-bottom{position:fixed;width:100%;z-index:1}.w3-top{top:0}.w3-bottom{bottom:0}
-.w3-overlay{position:fixed;display:none;width:100%;height:100%;top:0;left:0;right:0;bottom:0;background-color:rgba(0,0,0,0.5);z-index:2}
-.w3-display-topleft{position:absolute;left:0;top:0}.w3-display-topright{position:absolute;right:0;top:0}
-.w3-display-bottomleft{position:absolute;left:0;bottom:0}.w3-display-bottomright{position:absolute;right:0;bottom:0}
-.w3-display-middle{position:absolute;top:50%;left:50%;transform:translate(-50%,-50%);-ms-transform:translate(-50%,-50%)}
-.w3-display-left{position:absolute;top:50%;left:0%;transform:translate(0%,-50%);-ms-transform:translate(-0%,-50%)}
-.w3-display-right{position:absolute;top:50%;right:0%;transform:translate(0%,-50%);-ms-transform:translate(0%,-50%)}
-.w3-display-topmiddle{position:absolute;left:50%;top:0;transform:translate(-50%,0%);-ms-transform:translate(-50%,0%)}
-.w3-display-bottommiddle{position:absolute;left:50%;bottom:0;transform:translate(-50%,0%);-ms-transform:translate(-50%,0%)}
-.w3-display-container:hover .w3-display-hover{display:block}.w3-display-container:hover span.w3-display-hover{display:inline-block}.w3-display-hover{display:none}
-.w3-display-position{position:absolute}
-.w3-circle{border-radius:50%}
-.w3-round-small{border-radius:2px}.w3-round,.w3-round-medium{border-radius:4px}.w3-round-large{border-radius:8px}.w3-round-xlarge{border-radius:16px}.w3-round-xxlarge{border-radius:32px}
-.w3-row-padding,.w3-row-padding>.w3-half,.w3-row-padding>.w3-third,.w3-row-padding>.w3-twothird,.w3-row-padding>.w3-threequarter,.w3-row-padding>.w3-quarter,.w3-row-padding>.w3-col{padding:0 8px}
-.w3-container,.w3-panel{padding:0.01em 16px}.w3-panel{margin-top:16px;margin-bottom:16px}
-.w3-code,.w3-codespan{font-family:Consolas,"courier new";font-size:16px}
-.w3-code{width:auto;background-color:#fff;padding:8px 12px;border-left:4px solid #4CAF50;word-wrap:break-word}
-.w3-codespan{color:crimson;background-color:#f1f1f1;padding-left:4px;padding-right:4px;font-size:110%}
-.w3-card,.w3-card-2{box-shadow:0 2px 5px 0 rgba(0,0,0,0.16),0 2px 10px 0 rgba(0,0,0,0.12)}
-.w3-card-4,.w3-hover-shadow:hover{box-shadow:0 4px 10px 0 rgba(0,0,0,0.2),0 4px 20px 0 rgba(0,0,0,0.19)}
-.w3-spin{animation:w3-spin 2s infinite linear}@keyframes w3-spin{0%{transform:rotate(0deg)}100%{transform:rotate(359deg)}}
-.w3-animate-fading{animation:fading 10s infinite}@keyframes fading{0%{opacity:0}50%{opacity:1}100%{opacity:0}}
-.w3-animate-opacity{animation:opac 0.8s}@keyframes opac{from{opacity:0} to{opacity:1}}
-.w3-animate-top{position:relative;animation:animatetop 0.4s}@keyframes animatetop{from{top:-300px;opacity:0} to{top:0;opacity:1}}
-.w3-animate-left{position:relative;animation:animateleft 0.4s}@keyframes animateleft{from{left:-300px;opacity:0} to{left:0;opacity:1}}
-.w3-animate-right{position:relative;animation:animateright 0.4s}@keyframes animateright{from{right:-300px;opacity:0} to{right:0;opacity:1}}
-.w3-animate-bottom{position:relative;animation:animatebottom 0.4s}@keyframes animatebottom{from{bottom:-300px;opacity:0} to{bottom:0;opacity:1}}
-.w3-animate-zoom {animation:animatezoom 0.6s}@keyframes animatezoom{from{transform:scale(0)} to{transform:scale(1)}}
-.w3-animate-input{transition:width 0.4s ease-in-out}.w3-animate-input:focus{width:100%!important}
-.w3-opacity,.w3-hover-opacity:hover{opacity:0.60}.w3-opacity-off,.w3-hover-opacity-off:hover{opacity:1}
-.w3-opacity-max{opacity:0.25}.w3-opacity-min{opacity:0.75}
-.w3-greyscale-max,.w3-grayscale-max,.w3-hover-greyscale:hover,.w3-hover-grayscale:hover{filter:grayscale(100%)}
-.w3-greyscale,.w3-grayscale{filter:grayscale(75%)}.w3-greyscale-min,.w3-grayscale-min{filter:grayscale(50%)}
-.w3-sepia{filter:sepia(75%)}.w3-sepia-max,.w3-hover-sepia:hover{filter:sepia(100%)}.w3-sepia-min{filter:sepia(50%)}
-.w3-tiny{font-size:10px!important}.w3-small{font-size:12px!important}.w3-medium{font-size:15px!important}.w3-large{font-size:18px!important}
-.w3-xlarge{font-size:24px!important}.w3-xxlarge{font-size:36px!important}.w3-xxxlarge{font-size:48px!important}.w3-jumbo{font-size:64px!important}
-.w3-left-align{text-align:left!important}.w3-right-align{text-align:right!important}.w3-justify{text-align:justify!important}.w3-center{text-align:center!important}
-.w3-border-0{border:0!important}.w3-border{border:1px solid #ccc!important}
-.w3-border-top{border-top:1px solid #ccc!important}.w3-border-bottom{border-bottom:1px solid #ccc!important}
-.w3-border-left{border-left:1px solid #ccc!important}.w3-border-right{border-right:1px solid #ccc!important}
-.w3-topbar{border-top:6px solid #ccc!important}.w3-bottombar{border-bottom:6px solid #ccc!important}
-.w3-leftbar{border-left:6px solid #ccc!important}.w3-rightbar{border-right:6px solid #ccc!important}
-.w3-section,.w3-code{margin-top:16px!important;margin-bottom:16px!important}
-.w3-margin{margin:16px!important}.w3-margin-top{margin-top:16px!important}.w3-margin-bottom{margin-bottom:16px!important}
-.w3-margin-left{margin-left:16px!important}.w3-margin-right{margin-right:16px!important}
-.w3-padding-small{padding:4px 8px!important}.w3-padding{padding:8px 16px!important}.w3-padding-large{padding:12px 24px!important}
-.w3-padding-16{padding-top:16px!important;padding-bottom:16px!important}.w3-padding-24{padding-top:24px!important;padding-bottom:24px!important}
-.w3-padding-32{padding-top:32px!important;padding-bottom:32px!important}.w3-padding-48{padding-top:48px!important;padding-bottom:48px!important}
-.w3-padding-64{padding-top:64px!important;padding-bottom:64px!important}
-.w3-padding-top-64{padding-top:64px!important}.w3-padding-top-48{padding-top:48px!important}
-.w3-padding-top-32{padding-top:32px!important}.w3-padding-top-24{padding-top:24px!important}
-.w3-left{float:left!important}.w3-right{float:right!important}
-.w3-button:hover{color:#000!important;background-color:#ccc!important}
-.w3-transparent,.w3-hover-none:hover{background-color:transparent!important}
-.w3-hover-none:hover{box-shadow:none!important}
-/* Colors */
-.w3-amber,.w3-hover-amber:hover{color:#000!important;background-color:#ffc107!important}
-.w3-aqua,.w3-hover-aqua:hover{color:#000!important;background-color:#00ffff!important}
-.w3-blue,.w3-hover-blue:hover{color:#fff!important;background-color:#2196F3!important}
-.w3-light-blue,.w3-hover-light-blue:hover{color:#000!important;background-color:#87CEEB!important}
-.w3-brown,.w3-hover-brown:hover{color:#fff!important;background-color:#795548!important}
-.w3-cyan,.w3-hover-cyan:hover{color:#000!important;background-color:#00bcd4!important}
-.w3-blue-grey,.w3-hover-blue-grey:hover,.w3-blue-gray,.w3-hover-blue-gray:hover{color:#fff!important;background-color:#607d8b!important}
-.w3-green,.w3-hover-green:hover{color:#fff!important;background-color:#4CAF50!important}
-.w3-light-green,.w3-hover-light-green:hover{color:#000!important;background-color:#8bc34a!important}
-.w3-indigo,.w3-hover-indigo:hover{color:#fff!important;background-color:#3f51b5!important}
-.w3-khaki,.w3-hover-khaki:hover{color:#000!important;background-color:#f0e68c!important}
-.w3-lime,.w3-hover-lime:hover{color:#000!important;background-color:#cddc39!important}
-.w3-orange,.w3-hover-orange:hover{color:#000!important;background-color:#ff9800!important}
-.w3-deep-orange,.w3-hover-deep-orange:hover{color:#fff!important;background-color:#ff5722!important}
-.w3-pink,.w3-hover-pink:hover{color:#fff!important;background-color:#e91e63!important}
-.w3-purple,.w3-hover-purple:hover{color:#fff!important;background-color:#9c27b0!important}
-.w3-deep-purple,.w3-hover-deep-purple:hover{color:#fff!important;background-color:#673ab7!important}
-.w3-red,.w3-hover-red:hover{color:#fff!important;background-color:#f44336!important}
-.w3-sand,.w3-hover-sand:hover{color:#000!important;background-color:#fdf5e6!important}
-.w3-teal,.w3-hover-teal:hover{color:#fff!important;background-color:#5790f8!important}
-.w3-yellow,.w3-hover-yellow:hover{color:#000!important;background-color:#ffeb3b!important}
-.w3-white,.w3-hover-white:hover{color:#000!important;background-color:#fff!important}
-.w3-black,.w3-hover-black:hover{color:#fff!important;background-color:#000!important}
-.w3-grey,.w3-hover-grey:hover,.w3-gray,.w3-hover-gray:hover{color:#000!important;background-color:#9e9e9e!important}
-.w3-light-grey,.w3-hover-light-grey:hover,.w3-light-gray,.w3-hover-light-gray:hover{color:#000!important;background-color:#f1f1f1!important}
-.w3-dark-grey,.w3-hover-dark-grey:hover,.w3-dark-gray,.w3-hover-dark-gray:hover{color:#fff!important;background-color:#616161!important}
-.w3-pale-red,.w3-hover-pale-red:hover{color:#000!important;background-color:#ffdddd!important}
-.w3-pale-green,.w3-hover-pale-green:hover{color:#000!important;background-color:#ddffdd!important}
-.w3-pale-yellow,.w3-hover-pale-yellow:hover{color:#000!important;background-color:#ffffcc!important}
-.w3-pale-blue,.w3-hover-pale-blue:hover{color:#000!important;background-color:#ddffff!important}
-.w3-text-amber,.w3-hover-text-amber:hover{color:#ffc107!important}
-.w3-text-aqua,.w3-hover-text-aqua:hover{color:#00ffff!important}
-.w3-text-blue,.w3-hover-text-blue:hover{color:#2196F3!important}
-.w3-text-light-blue,.w3-hover-text-light-blue:hover{color:#87CEEB!important}
-.w3-text-brown,.w3-hover-text-brown:hover{color:#795548!important}
-.w3-text-cyan,.w3-hover-text-cyan:hover{color:#00bcd4!important}
-.w3-text-blue-grey,.w3-hover-text-blue-grey:hover,.w3-text-blue-gray,.w3-hover-text-blue-gray:hover{color:#607d8b!important}
-.w3-text-green,.w3-hover-text-green:hover{color:#4CAF50!important}
-.w3-text-light-green,.w3-hover-text-light-green:hover{color:#8bc34a!important}
-.w3-text-indigo,.w3-hover-text-indigo:hover{color:#3f51b5!important}
-.w3-text-khaki,.w3-hover-text-khaki:hover{color:#b4aa50!important}
-.w3-text-lime,.w3-hover-text-lime:hover{color:#cddc39!important}
-.w3-text-orange,.w3-hover-text-orange:hover{color:#ff9800!important}
-.w3-text-deep-orange,.w3-hover-text-deep-orange:hover{color:#ff5722!important}
-.w3-text-pink,.w3-hover-text-pink:hover{color:#e91e63!important}
-.w3-text-purple,.w3-hover-text-purple:hover{color:#9c27b0!important}
-.w3-text-deep-purple,.w3-hover-text-deep-purple:hover{color:#673ab7!important}
-.w3-text-red,.w3-hover-text-red:hover{color:#f44336!important}
-.w3-text-sand,.w3-hover-text-sand:hover{color:#fdf5e6!important}
-.w3-text-teal,.w3-hover-text-teal:hover{color:#009688!important}
-.w3-text-yellow,.w3-hover-text-yellow:hover{color:#d2be0e!important}
-.w3-text-white,.w3-hover-text-white:hover{color:#fff!important}
-.w3-text-black,.w3-hover-text-black:hover{color:#000!important}
-.w3-text-grey,.w3-hover-text-grey:hover,.w3-text-gray,.w3-hover-text-gray:hover{color:#757575!important}
-.w3-text-light-grey,.w3-hover-text-light-grey:hover,.w3-text-light-gray,.w3-hover-text-light-gray:hover{color:#f1f1f1!important}
-.w3-text-dark-grey,.w3-hover-text-dark-grey:hover,.w3-text-dark-gray,.w3-hover-text-dark-gray:hover{color:#3a3a3a!important}
-.w3-border-amber,.w3-hover-border-amber:hover{border-color:#ffc107!important}
-.w3-border-aqua,.w3-hover-border-aqua:hover{border-color:#00ffff!important}
-.w3-border-blue,.w3-hover-border-blue:hover{border-color:#2196F3!important}
-.w3-border-light-blue,.w3-hover-border-light-blue:hover{border-color:#87CEEB!important}
-.w3-border-brown,.w3-hover-border-brown:hover{border-color:#795548!important}
-.w3-border-cyan,.w3-hover-border-cyan:hover{border-color:#00bcd4!important}
-.w3-border-blue-grey,.w3-hover-border-blue-grey:hover,.w3-border-blue-gray,.w3-hover-border-blue-gray:hover{border-color:#607d8b!important}
-.w3-border-green,.w3-hover-border-green:hover{border-color:#4CAF50!important}
-.w3-border-light-green,.w3-hover-border-light-green:hover{border-color:#8bc34a!important}
-.w3-border-indigo,.w3-hover-border-indigo:hover{border-color:#3f51b5!important}
-.w3-border-khaki,.w3-hover-border-khaki:hover{border-color:#f0e68c!important}
-.w3-border-lime,.w3-hover-border-lime:hover{border-color:#cddc39!important}
-.w3-border-orange,.w3-hover-border-orange:hover{border-color:#ff9800!important}
-.w3-border-deep-orange,.w3-hover-border-deep-orange:hover{border-color:#ff5722!important}
-.w3-border-pink,.w3-hover-border-pink:hover{border-color:#e91e63!important}
-.w3-border-purple,.w3-hover-border-purple:hover{border-color:#9c27b0!important}
-.w3-border-deep-purple,.w3-hover-border-deep-purple:hover{border-color:#673ab7!important}
-.w3-border-red,.w3-hover-border-red:hover{border-color:#f44336!important}
-.w3-border-sand,.w3-hover-border-sand:hover{border-color:#fdf5e6!important}
-.w3-border-teal,.w3-hover-border-teal:hover{border-color:#009688!important}
-.w3-border-yellow,.w3-hover-border-yellow:hover{border-color:#ffeb3b!important}
-.w3-border-white,.w3-hover-border-white:hover{border-color:#fff!important}
-.w3-border-black,.w3-hover-border-black:hover{border-color:#000!important}
-.w3-border-grey,.w3-hover-border-grey:hover,.w3-border-gray,.w3-hover-border-gray:hover{border-color:#9e9e9e!important}
-.w3-border-light-grey,.w3-hover-border-light-grey:hover,.w3-border-light-gray,.w3-hover-border-light-gray:hover{border-color:#f1f1f1!important}
-.w3-border-dark-grey,.w3-hover-border-dark-grey:hover,.w3-border-dark-gray,.w3-hover-border-dark-gray:hover{border-color:#616161!important}
-.w3-border-pale-red,.w3-hover-border-pale-red:hover{border-color:#ffe7e7!important}.w3-border-pale-green,.w3-hover-border-pale-green:hover{border-color:#e7ffe7!important}
-.w3-border-pale-yellow,.w3-hover-border-pale-yellow:hover{border-color:#ffffcc!important}.w3-border-pale-blue,.w3-hover-border-pale-blue:hover{border-color:#e7ffff!important}
-/*--------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------*/
-.w3-theme-l5 {color:#000 !important; background-color:#69b6ff !important}
-.w3-theme-l4 {color:#000 !important; background-color:#0084ff !important}
-.w3-theme-l3 {color:#fff !important; background-color:#999999 !important}
-.w3-theme-l2 {color:#fff !important; background-color:#666666 !important}
-.w3-theme-l1 {color:#fff !important; background-color:#00c3ff !important}
-.w3-theme-d1 {color:#fff !important; background-color:#02389c !important}
-.w3-theme-d2 {color:#fff !important; background-color:#02389c !important}
-.w3-theme-d3 {color:#fff !important; background-color:#000000 !important}
-.w3-theme-d4 {color:#fff !important; background-color:#000000 !important}
-.w3-theme-d5 {color:#fff !important; background-color:#000000 !important}
+    <html lang="en">
+    <head>
+        <meta charset="UTF-8">
+        <meta http-equiv="X-UA-Compatible" content="IE=edge">
+        <meta name="viewport" content="width=device-width, initial-scale=1.0">
+        <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.0.2/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-EVSTQN3/azprG1Anm3QDgpJLIm9Nao0Yz1ztcQTwFspd3yD65VohhpuuCOmLASjC" crossorigin="anonymous">
+        <title>
+            Python Coding
+        </title>
+    </head>
+    <body>
+        <div class="bg-dark text-light text-center p-5">
+            <h1 class="display-1">
+                Python Codes
+            </h1>
+            <p>
+                This website is designed by bootstrap and is about Python.
+            </p>
+            <a href="" class="btn btn-danger">Read More</a>
+        </div>
+        <p style="height: 50px;">
 
-.w3-theme-light {color:#000 !important; background-color:#f0f0f0 !important}
-.w3-theme-dark {color:#fff !important; background-color:#000000 !important}
-.w3-theme-action {color:#fff !important; background-color:#000000 !important}
+        </p>
+        <div class="container">
+            <h3 class="display-3">
+                Basic Printing
+            </h3>
+            <code style="width: 50%;">
+                # Python's orders matter (a lot), so put what runs first on the top, and what runs later on the bottom.<br>
+                print("Hello World")<br>
+                # print() is for printing text onto the screen.<br>
+                print("   /|")<br>
+                print("  / |")<br>
+                print(" /  |")<br>
+                print("/___|")<br>
+                # This is how to draw a shape.      
+            </code>
+            <p style="height: 50px;">
 
-.w3-theme {color:#fff !important; background-color: #0d62fc !important}
-.w3-text-theme {color:#000000 !important}
-.w3-border-theme {border-color:#000000 !important}
+            </p>
+            <h3 class="display-3">
+                Working with Numbers
+            </h3>
+            <code>
+                print(2.0978)<br>
+                print(-2.0978)<br>
+                # When working with numbers, you can enter whole numbers and decimals.<br>
+                print("I will count the buses now")<br>
+                print("Buses", 20+30/6)<br>
+                print("Cars", 100-25*3%4)<br>
+                print("Is 5 greater than 7?", 5 &gt; 7)<br>
+                print("Is 5+3 greater than 5+5?", 5+3 &lt; 5+5)<br>
+                # Mr Monish's Numbers/Math section<br>
+                # + is add, - is minus, / is divide, * is multiply, % is percent or out of 100, &lt; &gt; is less than or greater than,<br>
+                # &lt;= =&gt; is greater or equals to/ is less than or equals to.<br>
+                print(3+5*2)<br>
+                #This is going to give an answer of 13 because multiply comes first, then addition.<br>
+                print((3+5)*2)<br>
+                # Putting paranthesis would tell python to add 3 to 5 first, before multiplying by two, resulting in the answer of 16<br>
+                print(10%3)<br>
+                # This is called the modulates symbol.<br>
+                # What this does is that it will divide 10 by 3, and we know it ends in a fraction. So, there is a remainder of 1<br>
+                # The modulates symbol would give the remainder.<br>
+                print(20%3)<br>
+                # Here is another example.<br>
+                number1=5<br>
+                print(number1+5)<br>
+                # Numbers could also be stored in variables.<br>
+                number2=10<br>
+                print(str(number2)+" is my favorite number.")<br>
+                # This would convert a number into a string.<br>
+                <br>
+                # print(number2+" is my favorite number.")<br>
+                <br>
+                # Running the code above wouldn't work, only when you turn number2 into a string, would it work.<br>
+                number3=-5<br>
+                print(abs(number3))<br>
+                # This would give the absolute value<br>
+                print(pow(3,3))<br>
+                # This would do 3 raised to the power of three, which means, 3x3x3.<br>
+                print(max(5,10))<br>
+                # What max does, is that it will choose between the two numbers, and show the larger one, in this case, 10.<br>
+                print(min(5,10))<br>
+                # What this does is basically vice versa of max, it would choose the smaller number, and show it, which is 5.<br>
+                print(round(4.3))<br>
+                print(round(4.7))<br>
+                # This would round the number, off to the nearest integer (whole number).<br>
+                from math import *<br>
+                # This is a module. It would give you access to more functions.<br>
+                print(floor(3.9))<br>
+                #Include &lt;from math import *&gt; in order to do these.<br>
+                #Floor will round the number of to its lowest possible number.<br>
+                print(ceil(3.1))<br>
+                # What Ceil does is essentially it would round the decimal to the highest number possible.<br>
+                print(sqrt(49))<br>
+                print(sqrt(48))<br>
+                # This would return the square root of a number<br>
+                # If it ends in a decimal, the answer would be the exact same on a standard 12 digit calculator.<br>
+                <br>
+                #number2=input("Enter another number: ")<br>
+                #result=number1+number2<br>
+                #print(result)<br>
+                # When you recieve input, python is going to automatically convert the two numbers into strings<br>
+            </code>
+            <!--&lt;    &gt;-->
+            <p style="height: 50px;">
 
-.w3-hover-theme:hover {color:#fff !important; background-color:#000000 !important}
-.w3-hover-text-theme:hover {color:#000000 !important}
-.w3-hover-border-theme:hover {border-color:#000000 !important}
-.richarblue{
-  background-color: rgb(92, 92, 255);
-}
-</style>
-</head>
-<body id="myPage">
+            </p>
+            <h3 class="display-3">
+                Strings and Variables
+            </h3>
+            <code>
+                change_name = "John"<br>
+                change_age = "old"<br>
+                print("There once was an old man named " + change_name + ", ")<br>
+                print("he was very " + change_age + ", ")<br>
+                change_name = "Tom"<br>
+                # This would make the name on the bottom become Tom.<br>
+                print("He really liked the name " + change_name + ", ")<br>
+                print("but didn't like being " + change_age + ", ")<br>
+                # This is a variable. By changing the text in quotation in line 8-9, you could replace the variables in lines 10-13<br>
+                # Notes: Strings are Data that stores test. Just basic, plain text. You need "" to store strings<br>
+                # You could also store numbers as data in python. Deciamls can be used too.<br>
+                # There is also something known as a boolean value, which is just true or false.<br>
+                number_age = 40<br>
+                change_name = "John"<br>
+                is_male = False<br>
+                print("This is a string.")<br>
+                print("There is a break under this\nThere is a break above this.")<br>
+                print("Oh look!\"A Quotation is here.")<br>
+                print("This simply\create a backslash.")<br>
+                # \n means creating a break, similar to the &lt;br> function.<br>
+                # \" Will basically create a quotation in the middle of the text.<br>
+                phrase = "Craftie"<br>
+                print(phrase + " is cool!")<br>
+                print(phrase.lower())<br>
+                print(phrase.upper())<br>
+                # This turns text into lowercase or uppercase.<br>
+                print(phrase.isupper())<br>
+                print(phrase.islower())<br>
+                # This checks if all the text is lowercase or uppercase.<br>
+                print(phrase.upper().isupper())<br>
+                # What this does is that it turns the text all into uppercase,<br>
+                # then runs a test to see if all the text is uppercase or not.<br>
+                print(len(phrase))<br>
+                # This will show the amount of characters (including space) in the variable.<br>
+                print(phrase[0])<br>
+                print(phrase[1])<br>
+                print(phrase[2])<br>
+                print(phrase[3])<br>
+                print(phrase[4])<br>
+                print(phrase[5])<br>
+                print(phrase[6])<br>
+                # 𝐀𝐋𝐋 𝐈𝐍𝐃𝐄𝐗 𝐈𝐍 𝐒𝐓𝐑𝐈𝐍𝐆𝐒 𝐒𝐓𝐀𝐑𝐓 𝐖𝐈𝐓𝐇 𝟎<br>
+                print("Index Section.")<br>
+                double = "letter"<br>
+                two = "Crafter Recruit"<br>
+                print(double.index("t"))<br>
+                #This would return the number of the text<br>
+                # If there are more than one of the letter, it would return the location of the first one.<br>
+                # You can also put text into the inside bracket.<br>
+                print(two.index("Recruit"))<br>
+                # This is going to show where the word Recruit starts in.<br>
+                # Python will throw you an error if the requested letter does not exist in the variable's string.<br>
+                print(two.replace("Recruit", "Team"))<br>
+                # This would replace the word "Recruit" with the word "Team" in the Two variable.<br>
+            </code>
+            <p style="height: 50px;">
 
-<!-- Sidebar on click -->
-<nav class="w3-sidebar w3-bar-block w3-white w3-card w3-animate-left w3-xxlarge" style="display:none;z-index:2" id="mySidebar">
-  <a href="javascript:void(0)" onclick="w3_close()" class="w3-bar-item w3-button w3-display-topright w3-text-teal">Close
-    <i class="fa fa-remove"></i>
-  </a>
-  <a href="#" class="w3-bar-item w3-button">Link 1</a>
-  <a href="#" class="w3-bar-item w3-button">Link 2</a>
-  <a href="#" class="w3-bar-item w3-button">Link 3</a>
-  <a href="#" class="w3-bar-item w3-button">Link 4</a>
-  <a href="#" class="w3-bar-item w3-button">Link 5</a>
-</nav>
+            </p>
+            <h3 class="display-3">
+                Lists
+            </h3>
+            <code>
+                listfriend=["Kevin","John","Tom","Will","Gorden","Ramsay"]<br>
+                # You could also add booleans and numbers into the square brackets.<br>
+                print(listfriend)<br>
+                # This is how to print the list.<br>
+                print(listfriend[0])<br>
+                print(listfriend[1])<br>
+                print(listfriend[2])<br>
+                # This is how to mention specific items in the list, via index.<br>
+                # Remember all index starts with a 0<br>
+                print(listfriend[-1])<br>
+                print(listfriend[-2])<br>
+                print(listfriend[-3])<br>
+                # If you give a negative value, it would start listing from the end.<br>
+                print(listfriend[1:3])<br>
+                # This would select everything between index 1 to index 3<br>
+                print(listfriend[2:])<br>
+                # This would select everything after index 2<br>
+                listfriend[1]="Johnson"<br>
+                print(listfriend)<br>
+                # This would change the name in index 1 into Johnson.<br>
+                numbers=[7,15,17,49,23,19,23]<br>
+                list_alpha=["a","b","c","c","e","f","g","h","i","j","k","l",]<br>
+                print(list_alpha)<br>
+                # This is just an ordinary list, nothing unusual :)<br>
+                list_alpha.extend(numbers)<br>
+                print(list_alpha)<br>
+                # This allows you to extend/combine two lists together.<br>
+                numbers=[7,15,17,49,23,19,23]<br>
+                list_alpha=["a","b","c","c","e","f","g","h","i","j","k","l",]<br>
+                list_alpha.append("Mm")<br>
+                print(list_alpha)<br>
+                # This is how to adda item to the end of the list.<br>
+                list_alpha=["a","b","c","c","e","f","g","h","i","j","k","l",]<br>
+                list_alpha.insert(3,"break")<br>
+                print(list_alpha)<br>
+                # This is how to add a item into the middle of the list.<br>
+                # The first digit is the index, of where you want to insert the item, the second is what you want to insert.<br>
+                list_alpha=["a","b","c","e","f","g","h","i","j","k","l",]<br>
+                list_alpha.remove("b")<br>
+                print(list_alpha)<br>
+                list_alpha.clear()<br>
+                print(list_alpha)<br>
+                # This is how to clear/remove specific or all items in a list.<br>
+                list_alpha=["a","b","c","e","f","g","h","i","j","k","l",]<br>
+                list_alpha.pop()<br>
+                print(list_alpha)<br>
+                # This removes the last element from the list.<br>
+                list_alpha=["a","b","c","e","f","g","h","i","j","k","l",]<br>
+                print(list_alpha.index("b"))<br>
+                # This would show the index of the word you are looking for in the list.<br>
+                list_alpha=["a","b","B","c","e","f","g","h","i","j","k","l",]<br>
+                print(list_alpha.count("b"))<br>
+                # This would count the amount of 'words' you put in the brackets. (it is case sensitive.<br>
+                list_alpha=["d","a","B","x","e","f","k","h","i","n","w","l",]<br>
+                list_alpha.sort()<br>
+                print(list_alpha)<br>
+                numbers=[75,135,17,49,255,139,23]<br>
+                numbers.sort()<br>
+                print(numbers)<br>
+                # This will sort the letters, based on capitalization, and alphabetical order. It can also sort out numbers.<br>
+                list_alpha=["a","b","c","e","f","g","h","i","j","k","l",]<br>
+                list_alpha.reverse()<br>
+                print(list_alpha)<br>
+                # This would reverse the list<br>
+                list_alpha=["a","b","c","e","f","g","h","i","j","k","l",]<br>
+                list_alpha2=list_alpha.copy()<br>
+                list_alpha2.remove("b")<br>
+                print(list_alpha2)<br>
+                print("The one above is list_alpha2")<br>
+                print(list_alpha)<br>
+                # This is how to copy lists. To show that it has worked, I removed the letter b from list_alpha2<br>
+            </code>
+            <p style="height: 50px;">
 
-<!-- Navbar -->
-<div class="w3-top">
- <div class="w3-bar w3-theme-d2 w3-left-align">
-  <a class="w3-bar-item w3-button w3-hide-medium w3-hide-large w3-right w3-hover-white w3-theme-d2" href="javascript:void(0);" onclick="openNav()"><i class="fa fa-bars"></i></a>
-  <a href="#" class="w3-bar-item w3-button w3-teal"><i class="fa fa-tint w3-margin-right"></i>Aquase</a>
-  <a href="#work" class="w3-bar-item w3-button w3-hide-small w3-hover-white">Work</a>
-  <a href="#pricing" class="w3-bar-item w3-button w3-hide-small w3-hover-white">Price</a>
-  <a href="#contact" class="w3-bar-item w3-button w3-hide-small w3-hover-white">Contact</a>
-    <div class="w3-dropdown-hover w3-hide-small">
-    <button class="w3-button" title="Notifications">Official<i class="fa fa-caret-down"></i></button>     
-    <div class="w3-dropdown-content w3-card-4 w3-bar-block">
-      <a href="http://aquase.com" target="_blank" class=w3-bar-item w3-button style="text-decoration: none;">Aquase Website</a>
-     
-    </div>
-  </div>
-  <a href="#" class="w3-bar-item w3-button w3-hide-small w3-right w3-hover-teal" title="Search"><i class="fa fa-search"></i></a>
- </div>
+            </p>
+            <h3 class="display-3">
+                Tuples
+            </h3>
+            <code>
+                # Tuples are containers that can store several values.<br>
+                # Tuples are similar to a list.<br>
+                coords=(4,5)<br>
+                # Tuples are immutable<br>
+                # It means that it can't be changed or modified.<br>
+                print(coords[1])<br>
+                #This is how to print a specific item in a tuples<br>
+                #Remember they are accessed by index starting from 0<br>
+                coordslist=[4,123,"hello"]<br>
+                coordslist[0]=10<br>
+                print(coordslist)<br>
+                # This is a list. The only difference between tuples and lists is that you cannot change the items in tuples,<br>
+                # While in lists, you can change the list.<br>
+                coords=[(4,5),(345,5),(4,23)]<br>
+                print(coords)<br>
+                # This is how to print a list of Tuples.<br>
+                # Tuples are normally used to store data that is never going to change, for instance, coordinates.<br>
+            </code>
+        </div>
+        <p style="height: 150px;">
 
-  <!-- Navbar on small screens -->
-  <div id="navDemo" class="w3-bar-block w3-theme-d2 w3-hide w3-hide-large w3-hide-medium">
-    <a href="#work" class="w3-bar-item w3-button">Work</a>
-    <a href="#pricing" class="w3-bar-item w3-button">Price</a>
-    <a href="#contact" class="w3-bar-item w3-button">Contact</a>
-    <a href="#" class="w3-bar-item w3-button">Search</a>
-  </div>
-</div>
-
-<!-- Image Header -->
-<div class="w3-display-container w3-animate-opacity">
-  <img src="assets/contact-1.jpg" alt="banner" style="max-width: 100%;">
-  <div class="w3-container w3-display-bottomleft w3-margin-bottom">  
-    <button onclick="document.getElementById('id01').style.display='block'" class="w3-button w3-xlarge w3-theme w3-hover-teal" title="Go To W3.CSS">Read More</button>
-  </div>
-</div>
-
-<!-- Modal -->
-<div id="id01" class="w3-modal">
-  <div class="w3-modal-content w3-card-4 w3-animate-top">
-    <header class="w3-container w3-teal w3-display-container"> 
-      <span onclick="document.getElementById('id01').style.display='none'" class="w3-button w3-teal w3-display-topright"><i class="fa fa-remove"></i></span>
-      <h4>This is the unofficial webpage.</h4>
-      <h5>Here is the official one...  <i class="fa fa-smile-o"></i></h5>
-    </header>
-    <div class="w3-container">
-      <p>Go to our <a class="w3-text-teal" href="http://aquase.com/" target="_blank">Aquase.com</a> to learn more!</p>
-    </div>
-    <footer class="w3-container w3-teal">
-      <p>Copyright @ Richard Hartono</p>
-    </footer>
-    </div>
-    </div>
-  </div>
-</div>
-
-<!-- Work Row -->
-<div class="w3-row-padding w3-padding-64 w3-theme-l1" id="work">
-
-<div class="w3-quarter">
-<h2>Our Work</h2>
-<p>Aquase is a mineral water produced by PT. ERINDO MANDIRI. The company, located at Dharmawulan Street number 02, Prigen, Pasuruan, East Java, Indonesia, is a family company established in 1990. This company owns seven distribution and service points in East Java such as Surabaya, Gresik, Malang, Kediri, Jember, Sidoarjo, and Madiun. After a year, they developed the business by working together with agents in 30 cities all over Indonesia. In 1992, they started to export the products to various countries. Aquase is healthy because it comes from higher spring-water and it is processed hygienically. Because Aquase is a good-quality product, it is awarded with certificates like ISO 90001:2000, SNI, BPOM, Halal, and ASPADIN.</p>
-</div>
-
-<div class="w3-quarter">
-<div class="w3-card w3-white">
-  <img src="assets/slide.jpg" alt="Snow" style="width:100%">
-  <div class="w3-container">
-  <h3>Aquase 330 mℓ</h3>
-  <h4>Usage:</h4>
-  <p>Suitable for consumption in restaurants.</p>
-  </div>
-  </div>
-</div>
-
-<div class="w3-quarter">
-<div class="w3-card w3-white">
-  <img src="assets/slide1.jpg" alt="Lights" style="width:100%">
-  <div class="w3-container">
-  <h3>Aquase 19ℓ </h3>
-  <h4>Usage:</h4>
-  <p>suitable for consumption at home.</p>
-  </div>
-  </div>
-</div>
-
-<div class="w3-quarter">
-<div class="w3-card w3-white">
-  <img src="assets/slide2.jpg" alt="Mountains" style="width:100%">
-  <div class="w3-container">
-  <h3>Aquase 1.5ℓ</h3>
-  <h4>Usage:</h4>
-  <p>Suitable for outdoor activities.</p>
-  </div>
-  </div>
-</div>
-
-</div>
-
-<!-- Container -->
-<div class="w3-container" style="position:relative">
-  <a onclick="w3_open()" class="w3-button w3-xlarge w3-circle w3-teal"
-  style="position:absolute;top:-28px;right:24px">+</a>
-</div>
-
-<!-- Pricing Row -->
-<div class="w3-row-padding w3-center w3-padding-64" id="pricing">
-    <h2>PRICING</h2>
-    <p>Choose a plan that fits your needs.</p><br>
-    <div class="w3-third w3-margin-bottom">
-      <ul class="w3-ul w3-border w3-hover-shadow">
-        <li class="w3-theme">
-          <p class="w3-xlarge">120ml of Aquase</p>
-        </li>
-        <li class="w3-padding-16"><img src="assets/1.jpg" alt="120ml" style="max-width: 90%;"></li>
-        <li class="w3-padding-16">Suitable for consumption at <b>offices and meetings</b>.</li>
-        <li class="w3-padding-16">
-          <h2 class="w3-wide"><i class="fa fa-usd"></i> 5</h2>
-          <span class="w3-opacity">per box</span>
-        </li>
-        <li class="w3-theme-l5 w3-padding-24">
-          <button class="w3-button w3-teal w3-padding-large"><i class="fa fa-check"></i> Sign Up</button>
-        </li>
-      </ul>
-    </div>
-
-    <div class="w3-third w3-margin-bottom">
-      <ul class="w3-ul w3-border w3-hover-shadow">
-        <li class="w3-theme">
-          <p class="w3-xlarge">240ml of Aquase</p>
-        </li>
-        <li class="w3-padding-16"><img src="assets/22.jpg" alt="240ml" style="max-width: 90%;"></li>
-        <li class="w3-padding-16">Suitable for <b>meetings or gaterings</b>.</li>
-        <li class="w3-padding-16">
-          <h2 class="w3-wide"><i class="fa fa-usd"></i> 25</h2>
-          <span class="w3-opacity">per box</span>
-        </li>
-        <li class="w3-theme-l5 w3-padding-24">
-          <button class="w3-button w3-teal w3-padding-large"><i class="fa fa-check"></i> Sign Up</button>
-        </li>
-      </ul>
-    </div>
-
-    <div class="w3-third w3-margin-bottom">
-      <ul class="w3-ul w3-border w3-hover-shadow">
-        <li class="w3-theme">
-          <p class="w3-xlarge">330ml of Aquase</p>
-        </li>
-        <li class="w3-padding-16"><img src="assets/3.jpg" style="max-width: 90%;"></li>
-        <li class="w3-padding-16">Suitable for consumption at <b>restaurants</b>.</li>
-        <li class="w3-padding-16">
-          <h2 class="w3-wide"><i class="fa fa-usd"></i> 15</h2>
-          <span class="w3-opacity">per box</span>
-        </li>
-        <li class="w3-theme-l5 w3-padding-24">
-          <button class="w3-button w3-teal w3-padding-large"><i class="fa fa-check"></i> Sign Up</button>
-        </li>
-      </ul>
-    </div>
-
-    <div class="w3-third w3-margin-bottom">
-        <ul class="w3-ul w3-border w3-hover-shadow">
-          <li class="w3-theme">
-            <p class="w3-xlarge">600ml of Aquase</p>
-          </li>
-          <li class="w3-padding-16"><img src="assets/4.png" style="max-width: 90%;"></li>
-          <li class="w3-padding-16">Suitable for <b>outdoor activities.</b></li>
-          <li class="w3-padding-16">
-            <h2 class="w3-wide"><i class="fa fa-usd"></i> 20</h2>
-            <span class="w3-opacity">per box</span>
-          </li>
-          <li class="w3-theme-l5 w3-padding-24">
-            <button class="w3-button w3-teal w3-padding-large"><i class="fa fa-check"></i> Sign Up</button>
-          </li>
-        </ul>
-      </div>
-
-      <div class="w3-third w3-margin-bottom">
-        <ul class="w3-ul w3-border w3-hover-shadow">
-          <li class="w3-theme">
-            <p class="w3-xlarge">1.5L of Aquase</p>
-          </li>
-          <li class="w3-padding-16"><img src="assets/5.jpg" style="max-width: 90%;"></li>
-          <li class="w3-padding-16">Suitable for <b>picnics.</b></li>
-          <li class="w3-padding-16">
-            <h2 class="w3-wide"><i class="fa fa-usd"></i> 15</h2>
-            <span class="w3-opacity">per box</span>
-          </li>
-          <li class="w3-theme-l5 w3-padding-24">
-            <button class="w3-button w3-teal w3-padding-large"><i class="fa fa-check"></i> Sign Up</button>
-          </li>
-        </ul>
-      </div>
-
-      <div class="w3-third w3-margin-bottom">
-        <ul class="w3-ul w3-border w3-hover-shadow">
-          <li class="w3-theme">
-            <p class="w3-xlarge">19L of Aquase</p>
-          </li>
-          <li class="w3-padding-16"><img src="assets/6.jpg" style="max-width: 90%;"></li>
-          <li class="w3-padding-16">Suitable for <b>water dispensers.</b></li>
-          <li class="w3-padding-16">
-            <h2 class="w3-wide"><i class="fa fa-usd"></i> 20</h2>
-            <span class="w3-opacity">per galon</span>
-          </li>
-          <li class="w3-theme-l5 w3-padding-24">
-            <button class="w3-button w3-teal w3-padding-large"><i class="fa fa-check"></i> Sign Up</button>
-          </li>
-        </ul>
-      </div>
-
-</div>
-
-<!-- Contact Container -->
-<div class="w3-container w3-padding-64 w3-theme-l5" id="contact">
-  <div class="w3-row">
-    <div class="w3-col m5">
-    <div class="w3-padding-16"><span class="w3-xlarge w3-border-teal w3-bottombar">Contact Us</span></div>
-      <h3>Factory Address</h3>
-      <p><i class="fa fa-map-marker w3-text-teal w3-xlarge"></i> Jl. Damarwulan 02, Desa Gambiran Prigen, Pasuruan, Jawa Timur 67157</p>
-      <h4>Phone Number</h4>
-      <p><i class="fa fa-phone w3-text-teal w3-xlarge"></i> +6234 388 0133</p>
-      <h4>Whatsapp Number</h4>
-      <p><i class="fa fa-whatsapp w3-text-teal w3-xlarge"></i> +6234 388 0155</p>
-      <h3>Marketing Office</h3>
-      <p><i class="fa fa-map-marker w3-text-teal w3-xlarge"></i> Jl. Arif Rahman Hakim no 139, Surabaya 60111</p>
-      <h4>Phone Number</h4>
-      <p><i class="fa fa-phone w3-text-teal w3-xlarge"></i>  
-        +6231 561 4164
-        +6231 561 4171
-        +6231 561 3119
-      </p>
-      <h4>Whatsapp Number</h4>
-      <p><i class="fa fa-whatsapp w3-text-teal w3-xlarge"></i>  0895340006354</p>
-    </div>
-    <div class="w3-col m7">
-      <form class="w3-container w3-card-4 w3-padding-16 w3-white" action="/action_page.php" target="_blank">
-      <div class="w3-section">      
-        <label>Name</label>
-        <input class="w3-input" type="text" name="Name" required>
-      </div>
-      <div class="w3-section">      
-        <label>Email</label>
-        <input class="w3-input" type="text" name="Email" required>
-      </div>
-      <div class="w3-section">      
-        <label>Message</label>
-        <input class="w3-input" type="text" name="Message" required>
-      </div>  
-      <input class="w3-check" type="checkbox" checked name="Like">
-      <label>I Like it!</label>
-      <button type="submit" class="w3-button w3-right w3-theme">Send</button>
-      </form>
-    </div>
-  </div>
-</div>
-
-<!-- Image of location/map -->
-<img src="assets/home-1.png" class="w3-image w3-greyscale-min" style="width:100%;">
-
-<!-- Footer -->
-<footer class="w3-container w3-padding-32 w3-theme-d1 w3-center">
-  <h4>Follow Us</h4>
-  <a class="w3-button w3-large w3-teal" href="javascript:void(0)" title="Facebook"><i class="fa fa-facebook"></i></a>
-  <a class="w3-button w3-large w3-teal" href="javascript:void(0)" title="Twitter"><i class="fa fa-twitter"></i></a>
-  <a class="w3-button w3-large w3-teal" href="javascript:void(0)" title="Google +"><i class="fa fa-google-plus"></i></a>
-  <a class="w3-button w3-large w3-teal" href="javascript:void(0)" title="Google +"><i class="fa fa-instagram"></i></a>
-  <a class="w3-button w3-large w3-teal w3-hide-small" href="javascript:void(0)" title="Linkedin"><i class="fa fa-linkedin"></i></a>
-  <p>Copyright @ Richard</p>
-
-  <div style="position:relative;bottom:100px;z-index:1;" class="w3-tooltip w3-right">
-    <span class="w3-text w3-padding w3-teal w3-hide-small">Go To Top</span>   
-    <a class="w3-button w3-theme" href="#myPage"><span class="w3-xlarge">
-    <i class="fa fa-chevron-circle-up"></i></span></a>
-  </div>
-</footer>
-
-<script>
-// Script for side navigation
-function w3_open() {
-  var x = document.getElementById("mySidebar");
-  x.style.width = "300px";
-  x.style.paddingTop = "10%";
-  x.style.display = "block";
-}
-
-// Close side navigation
-function w3_close() {
-  document.getElementById("mySidebar").style.display = "none";
-}
-
-// Used to toggle the menu on smaller screens when clicking on the menu button
-function openNav() {
-  var x = document.getElementById("navDemo");
-  if (x.className.indexOf("w3-show") == -1) {
-    x.className += " w3-show";
-  } else { 
-    x.className = x.className.replace(" w3-show", "");
-  }
-}
-</script>
-
-</body>
+        </p>
+        <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.0.2/dist/js/bootstrap.bundle.min.js" integrity="sha384-MrcW6ZMFYlzcLA8Nl+NtUVF0sA7MsXsP1UyJoMp4YLEuNSfAP+JcXn/tWtIaxVXM" crossorigin="anonymous"></script>
+    </body>
 </html>
