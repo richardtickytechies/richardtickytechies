@@ -278,8 +278,8 @@
             </h3>
             <code>
                 def sayhi():<br>
-                -insert indent-username=input("Please Enter your name: ")<br>
-                -insert indent-print("Hello, "+username)<br>
+                -indent-username=input("Please Enter your name: ")<br>
+                -indent-print("Hello, "+username)<br>
                 # Everything that comes after the line above is part of the function.<br>
                 # When you type in code inside a function, it will be indented. This will tell python that it belongs to the code.<br>
                 # To write things outside, simply delete the indent.<br>
@@ -288,7 +288,7 @@
                 # When you name a function, it needs to be all lowercase, and it better have an underscore, although not compulsory.<br>
                 # Parameters are information that are recieved by functions.<br>
                 def printname(name):<br>
-                -insert indent-print("Hello, user "+name)<br>
+                -indent-print("Hello, user "+name)<br>
                 # This name in the function tag is a parameter.<br>
                 # It works like a variable inside of the function<br>
                 printname("Tommy")<br>
@@ -296,12 +296,12 @@
                 printname("Beasty")<br>
                 # The same with Beasty<br>
                 def printname(name,age):<br>
-                -insert indent-print("Hello, "+name+", your age is "+age+("."))<br>
+                -indent-print("Hello, "+name+", your age is "+age+("."))<br>
                 printname("Jimmy","54")<br>
                 # This is how to put more than one parameter into the function.<br>
                 # You would also notice the number is in strings.<br>
                 def printname(name,age):<br>
-                -insert indent-print("Hello, "+name+", your age is "+str(age)+("."))<br>
+                -indent-print("Hello, "+name+", your age is "+str(age)+("."))<br>
                 printname("Jim",31)<br>
                 # By converting the number into a string, you fixed the problem.<br>
             </code>
@@ -313,17 +313,67 @@
             </h3>
             <code>
                 def cube(number):<br>
-                -insert indent-return pow(number,3)<br>
+                -indent-return pow(number,3)<br>
                 print(cube(3))<br>
                 # This is how to get a return from python.<br>
                 # The return needs to have an indentation, or it would not work.<br>
                 # What this code basically does is that it cubes a number (a.k.a. ^3) that you put into the parameter.<br>
                 def cube(number):<br>
-                -insert indent-return pow(number,3)<br>
+                -indent-return pow(number,3)<br>
                 result1=cube(5)<br>
                 print(result1)<br>
                 # You could also store the results in a variable.<br>
                 # Note that printing text after the return statement wouldn't work, because it breaks out of the function.<br>
+            </code>
+            <p style="height: 50px;">
+
+            </p>
+            <h3 class="display-3">
+                Functions
+            </h3>
+            <h5 class="display-5">
+                (incomplete)
+            </h5>
+            <code>
+                gendermale=True
+                if gendermale:
+                -indent-print("Your Gender is male.")
+                # This is an if statement. Anything with an indentation is going to show if the if statement above is true.
+                # If not, it wouldn't print anything.
+                gendermale=False
+                if gendermale:
+                -indent-print("Your Gender is male.")
+                else:
+                -indent-print("You are not a male.")
+                # Else will happen if the if statement is not satisfied.
+                gendermale=True
+                heighttall=False
+                if gendermale or heighttall:
+                -indent-print("Your Gender is male or tall or both.")
+                else:
+                -indent-print("You are not a male or tall.")
+                # This is how to check both statements. If one or both statements are ture, the else statement will not run.
+                # If both statements are false, then it would run else.
+                opt1=True
+                opt2=True
+                if opt1 and opt2:
+                -indent-print("Both options are satisfied.")
+                else:
+                -indent-print("One or no Option has been satisfied.")
+                # This is similar to or, except both statements need to be true for it to display the if.
+                gendermale=True
+                heighttall=False
+                if gendermale and heighttall:
+                -indent-print("Your Gender is male and tall.")
+                elif gendermale and not (heighttall):
+                -indent-print("You are a short male.")
+                elif gendermale and not (heighttall):
+                -indent-print("You are not a male, but you are tall.")
+                else:
+                -indent-print("You are not a male or tall.")
+                # This will see if you are tall, and male specifically.
+                # Elif basically stands for else if.
+                
             </code>
         </div>
         <p style="height: 150px;">
