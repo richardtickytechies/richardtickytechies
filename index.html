@@ -331,49 +331,130 @@
             <h3 class="display-3">
                 If Statements
             </h3>
-            <h5 class="display-5">
-                (incomplete)
-            </h5>
             <code>
-                gendermale=True
-                if gendermale:
-                -indent-print("Your Gender is male.")
-                # This is an if statement. Anything with an indentation is going to show if the if statement above is true.
-                # If not, it wouldn't print anything.
-                gendermale=False
-                if gendermale:
-                -indent-print("Your Gender is male.")
-                else:
-                -indent-print("You are not a male.")
-                # Else will happen if the if statement is not satisfied.
-                gendermale=True
-                heighttall=False
-                if gendermale or heighttall:
-                -indent-print("Your Gender is male or tall or both.")
-                else:
-                -indent-print("You are not a male or tall.")
-                # This is how to check both statements. If one or both statements are ture, the else statement will not run.
-                # If both statements are false, then it would run else.
-                opt1=True
-                opt2=True
-                if opt1 and opt2:
-                -indent-print("Both options are satisfied.")
-                else:
-                -indent-print("One or no Option has been satisfied.")
-                # This is similar to or, except both statements need to be true for it to display the if.
-                gendermale=True
-                heighttall=False
-                if gendermale and heighttall:
-                -indent-print("Your Gender is male and tall.")
-                elif gendermale and not (heighttall):
-                -indent-print("You are a short male.")
-                elif gendermale and not (heighttall):
-                -indent-print("You are not a male, but you are tall.")
-                else:
-                -indent-print("You are not a male or tall.")
-                # This will see if you are tall, and male specifically.
-                # Elif basically stands for else if.
-                
+                gendermale=True<br>
+                if gendermale:<br>
+                -indent-print("Your Gender is male.")<br>
+                # This is an if statement. Anything with an indentation is going to show if the if statement above is true.<br>
+                # If not, it wouldn't print anything.<br>
+                gendermale=False<br>
+                if gendermale:<br>
+                -indent-print("Your Gender is male.")<br>
+                else:<br>
+                -indent-print("You are not a male.")<br>
+                # Else will happen if the if statement is not satisfied.<br>
+                gendermale=True<br>
+                heighttall=False<br>
+                if gendermale or heighttall:<br>
+                -indent-print("Your Gender is male or tall or both.")<br>
+                else:<br>
+                -indent-print("You are not a male or tall.")<br>
+                # This is how to check both statements. If one or both statements are ture, the else statement will not run.<br>
+                # If both statements are false, then it would run else.<br>
+                opt1=True<br>
+                opt2=True<br>
+                if opt1 and opt2:<br>
+                -indent-print("Both options are satisfied.")<br>
+                else:<br>
+                -indent-print("One or no Option has been satisfied.")<br>
+                # This is similar to or, except both statements need to be true for it to display the if.<br>
+                gendermale=True<br>
+                heighttall=False<br>
+                if gendermale and heighttall:<br>
+                -indent-print("Your Gender is male and tall.")<br>
+                elif gendermale and not (heighttall):<br>
+                -indent-print("You are a short male.")<br>
+                elif gendermale and not (heighttall):<br>
+                -indent-print("You are not a male, but you are tall.")<br>
+                else:<br>
+                -indent-print("You are not a male or tall.")<br>
+                # This will see if you are tall, and male specifically.<br>
+                # Elif basically stands for else if.<br>
+                def maxnumber(number1,number2,number3):<br>
+                if number1 >= number2 and number2 >= number3:<br>
+                -indent-return number1<br>
+                elif number2 >= number1 and number2>= number3:<br>
+                -indent-return number2<br>
+                else:<br>
+                -indent-return number3<br>
+                print(maxnumber(5,6,7))<br>
+                # This function would return the largest number.<br>
+                def dogcat(text1):<br>
+                if "dog" == text1:<br>
+                -indent-return text1<br>
+                else:<br>
+                -indent-return "cat"<br>
+                print(dogcat("dog"))<br>
+                # This function would check if the word matches the one in the function.<br>
+                spell1=input("What is a vehicle with four wheels: ")<br>
+                def car(text1):<br>
+                if "car" == text1:<br>
+                -indent-return "Correct!"<br>
+                elif "car" == text1:<br>
+                -indent-return "Correct!"<br>
+                else:<br>
+                -indent-return "Wrong!"<br>
+                print(car(spell1))<br>
+                # This is how to make a spelling bee game/guessing game.<br>
+                # == is equal<br>
+                # != is not equal<br>
+                # &gt; is greater than<br>
+                # &lt; is less than<br>
+                # &gt;= is greater than or equal to<br>
+                # &lt;= is less than or equal to<br>
+            </code>
+            <p style="height: 50px;">
+
+            </p>
+            <h3 class="display-3">
+                Dictionaries
+            </h3>
+            <code>
+                monthconvert={<br>
+                -indent-"Jan":"January",<br>
+                -indent-"Feb":"February",<br>
+                -indent-"Mar":"March",<br>
+                -indent-"Apr":"April",<br>
+                -indent-"May":"May",<br>
+                -indent-"Jun":"June",<br>
+                -indent-"Jul":"July",<br>
+                -indent-"Aug":"August",<br>
+                -indent-"Sep":"September",<br>
+                -indent-"Oct":"October",<br>
+                -indent-"Nov":"November",<br>
+                -indent-"Dec":"December",<br>
+                -indent-1:"One"<br>
+                }<br>
+                # Remember to put commas after each one.<br>
+                # Inside the dictionary is the key-value-pair<br>
+                # Whenever you write a dictionary, make sure its in curly brackets.<br>
+                # This would turn basic three digit month names into full month names.<br>
+                # NEVER use duplicate names for dictionaries.<br>
+                print(monthconvert["Jun"])<br>
+                # This is how to access one of the items.<br>
+                print(monthconvert.get("Jan"))<br>
+                # This is another method, but more advanced<br>
+                print(monthconvert.get("Ja","Not a Valid Key."))<br>
+                # What this does is that if it doesn't find the dictionary, it would go with the next one, which is the default one<br>
+                print(monthconvert[1])<br>
+                print(monthconvert.get(1))<br>
+                # Numbers also work.<br>
+            </code>
+            <p style="height: 50px;">
+
+            </p>
+            <h3 class="display-3">
+                While Loop
+            </h3>
+            <code>
+                i=1<br>
+                while i &gt;= 10:<br>
+                -indent-print(i)<br>
+                -indent-i+=1<br>
+                -indent-print("Done with Loop.")<br>
+                #This is a short hand in python.<br>
+                # While Loop is probably self explanatory.<br>
+                #It loops the function until something turns false<br>
             </code>
         </div>
         <p style="height: 150px;">
